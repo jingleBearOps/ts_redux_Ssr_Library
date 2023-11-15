@@ -11,7 +11,7 @@ body {
 }
 
 main {
-  max-width: 30rem;
+  max-width: 80rem;
   margin: auto;
   padding: 2rem 1rem;
 }
@@ -19,7 +19,12 @@ main {
 main > h1 {
   text-align: center;
 }
-
+/* .center {
+    border: 5px solid;
+    display: flex;
+    justify-content: center;
+  } */
+  
 .Add-article {
   margin: 2rem auto;
   padding: 1rem;

@@ -23,7 +23,8 @@ const App: React.FC = () => {
 
   return (
     <main>
-      <h1>My Articles</h1>
+      <div className="center">
+      <h1 color="red" >My Articles</h1>
       <AddArticle saveArticle={saveArticle} />
       {articles.map((article: IArticle) => (
         <Article
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           removeArticle={removeArticle}
         />
       ))}
+      </div>
     </main>
   )
 }
