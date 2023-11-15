@@ -1,14 +1,15 @@
-export default function Goal(props:{
+interface GoalProps {
     name: string;
-    prices: number;
+    price: number;
     category: string;
-} ){
-    props
+}
+
+export default function Goal({name, price, category}: GoalProps){
     return (<article>
         <div>
-            <h2>{props.name}</h2>
-            <h3>{props.prices}</h3>
-            <h3>{props.category}</h3>
+            <h2>{name}</h2>
+            <h3>{price}</h3>
+            <h3>{category}</h3>
         </div>
         <button>DELETE</button>
     </article>
