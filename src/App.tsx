@@ -44,7 +44,7 @@ const App: React.FC = () => {
   }
 
 
-  if(editMode) return <ArticleForm article={selectedProduct} cancelEdit={cancelEdit}/> 
+  if(editMode) return <ArticleForm article={selectedProduct} cancelEdit={cancelEdit} saveArticle={saveArticle}/> 
   // if(editMode) return <ArticleForm /> 
   return (
     <main>

@@ -1,11 +1,13 @@
 import { Box, Paper, Typography, Grid, TextField, Button } from "@mui/material";
+import React from "react";
 
 
 interface Props {
     article: IArticle | undefined;
     cancelEdit: () => void;
+    saveArticle: (article: IArticle | any) => void
 }
-export default function ArticleForm({article, cancelEdit}: Props){
+export default function ArticleForm({article, cancelEdit, saveArticle}: Props){
     let name;
     let number;
     let category;
@@ -22,6 +24,19 @@ export default function ArticleForm({article, cancelEdit}: Props){
             category = article.category;
 
         }
+        const [newarticle, setArticle] = React.useState<IArticle | {}>()
+
+        const handleArticleData = (e: React.FormEvent<HTMLInputElement>) => {
+          setArticle({
+            ...newarticle,
+            [e.currentTarget.id]: e.currentTarget.value,
+          })
+        }
+      
+        const addNewArticle = (e: React.FormEvent) => {
+          e.preventDefault()
+          saveArticle(newarticle)
+        }
     return(
         // <>
         
@@ -33,23 +48,29 @@ export default function ArticleForm({article, cancelEdit}: Props){
             <Typography variant="h4" gutterBottom sx={{mb: 4}}>
                 Product Details
             </Typography>
-            <form onSubmit={()=>{}}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={12}>
-                    <TextField defaultValue={name} name='name' label='Name'/>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField defaultValue={number} name='number' label='Number'/>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField defaultValue={category} name='category' label='Category'/>
-                </Grid>
-{/* 
-                above: dropdown select
-                bottom: customized input */}
-
-            </Grid>
-            <Box display='flex' justifyContent='space-between' sx={{mt: 3}}>
+            <form onSubmit={addNewArticle} className="Add-article">
+                <input
+                    type="text"
+                    id="name"
+                    placeholder={name}
+                    onChange={handleArticleData}
+                />
+                    <input
+                        type="number"
+                        id="number"
+                        placeholder={number.toString()}
+                        onChange={handleArticleData}
+                    />
+                <input
+                    type="text"
+                    id="category"
+                    placeholder={category}
+                    onChange={handleArticleData}
+                />
+                <button disabled={article === undefined ? true : false}>
+                    Add article
+                </button>
+                <Box display='flex' justifyContent='space-between' sx={{mt: 3}}>
                 <Button onClick={cancelEdit} variant='contained' color='inherit'>Cancel</Button>
                 <Button type = 'submit' variant='contained' color='success'>Submit</Button>
             </Box>
@@ -59,3 +80,4 @@ export default function ArticleForm({article, cancelEdit}: Props){
     )
 
 }
+
