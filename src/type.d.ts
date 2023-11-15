@@ -1,4 +1,6 @@
-interface IArticle {
+ 
+ 
+ interface IArticle {
     id: number
     name: string
     number: number
